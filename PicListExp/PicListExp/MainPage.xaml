@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PicListExp.MainPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+        <Frame BackgroundColor="#179E81" Padding="16" CornerRadius="0">
+            <StackLayout Orientation="Horizontal">
+            <Label Text="Landmark"  TextColor="White" FontSize="36"/>
+                <Button x:Name="bFoto" Text="Foto" HorizontalOptions="EndAndExpand" Clicked="bFoto_Clicked"/>
+            </StackLayout>
+        </Frame>
+        <CollectionView x:Name="cvList" ItemsSource="{Binding PlaceList}"
+                        SelectionMode="Single"
+                        SelectionChanged="cvList_SelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" RowDefinitions="Auto,*" ColumnDefinitions="Auto,*">
+                        <Image Grid.RowSpan="2" Source="{Binding Image}" Aspect="AspectFill" HeightRequest="40" WidthRequest="50"></Image>
+                        <Label Grid.Column="1" Text="{Binding Name}" FontAttributes="Bold"></Label>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Description}" VerticalOptions="End"></Label>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+</ContentPage>
