@@ -15,6 +15,19 @@ namespace PicListExp
         public NewPlace()
         {
             InitializeComponent();
+            
+
+        }
+
+        protected override void OnAppearing()
+        {
+           
+            base.OnAppearing();
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+
         }
     }
 }

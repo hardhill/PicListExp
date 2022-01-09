@@ -43,8 +43,11 @@ namespace PicListExp
 
         private async void bFoto_Clicked(object sender, EventArgs e)
         {
+            
             // Open window
-            await Navigation.PushAsync(new NewPlace() { });
+            var pagePlaceEdit = new NewPlace();
+            pagePlaceEdit.BindingContext = "Send text";
+            await Navigation.PushAsync(pagePlaceEdit);
         }
     }
 }

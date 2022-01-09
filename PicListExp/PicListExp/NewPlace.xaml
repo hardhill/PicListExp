@@ -5,9 +5,14 @@
              NavigationPage.HasNavigationBar="True" Title="Page 2">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Image Source="nofoto.png"  WidthRequest="400">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Entry x:Name="edtTitle" FontSize="Large" HorizontalOptions="Fill" MaxLength="100" Placeholder="Title" ClearButtonVisibility="WhileEditing" Margin="0,20,10,20"/>
+            <Entry x:Name="edtDescription" FontSize="Large" HorizontalOptions="Fill" MaxLength="250" Placeholder="Description" ClearButtonVisibility="WhileEditing" Margin="0,20,10,20"/>
+            <Button x:Name="btnSaveData" VerticalOptions="EndAndExpand" Text="Save this Landmark" FontSize="Large" BackgroundColor="#ABEABE" Padding="20"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
