@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PicListExp.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace PicListExp
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             PlaceList = new List<Place>();
             PlaceList.Add(new Place() { Name = "Королев", Description = "Город где живет Сережа", Image = "https://projects.bielecki.ru/images/points/korolev.jpg" });
@@ -31,7 +32,7 @@ namespace PicListExp
             PlaceList.Add(new Place() { Name = "Иркутск", Description = "Соседний город", Image = "https://projects.bielecki.ru/images/points/irkutsk.jpg" });
             PlaceList.Add(new Place() { Name = "Улан-Удэ", Description = "Родина моя", Image = "https://projects.bielecki.ru/images/points/ulan-ude.jpg" });
             BindingContext = this;
-            
+            var list = await App.LandmarkDB.GetLandmarksAsync();
             base.OnAppearing();
         }
 

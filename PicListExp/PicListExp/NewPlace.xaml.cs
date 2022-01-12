@@ -62,9 +62,10 @@ namespace PicListExp
             imgPhoto.Source = await placeController.SetImage(false);
         }
 
-        private void btnSaveData_Clicked(object sender, EventArgs e)
+        private async void btnSaveData_Clicked(object sender, EventArgs e)
         {
-            
+            placeController.SaveData();
+            await Navigation.PopToRootAsync();
         }
 
         private async void btnGPS_Clicked(object sender, EventArgs e)

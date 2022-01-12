@@ -22,7 +22,7 @@
                     <Button x:Name="btnPickImage" HorizontalOptions="FillAndExpand" Text="Picture" Clicked="btnPickImage_Clicked"/>
                 </StackLayout>
                 <Entry x:Name="edtTitle" FontSize="Large" MaxLength="50"  Placeholder="Title" ClearButtonVisibility="WhileEditing" Margin="20,0,20,0" ReturnType="Next" Keyboard="Text"/>
-                <Entry x:Name="edtDescription" FontSize="Large"  MaxLength="100" Placeholder="Description" ClearButtonVisibility="WhileEditing" Margin="20,0,20,0" Keyboard="Text"/>
+                <Editor x:Name="edtDescription" FontSize="Large"  MaxLength="100" Placeholder="Description"  Margin="20,0,20,0" Keyboard="Text"/>
                 
             </StackLayout>
             <StackLayout Grid.Row="2" Orientation="Horizontal" Margin="20,0,20,0">

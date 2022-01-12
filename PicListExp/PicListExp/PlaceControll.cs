@@ -1,14 +1,16 @@
-﻿using System;
+﻿using PicListExp.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace PicListExp
 {
-
+    
     internal class PlaceControll
     {
         CancellationTokenSource cts;
@@ -21,10 +23,18 @@ namespace PicListExp
         public delegate void LocationHandler(LocationResult result);
         public event LocationHandler OnLocation;
 
-        public bool SaveData()
+        public int SaveData()
         {
             // сохранить данные в БД
-            return false;
+            Landmark landmark = new Landmark { Title="Example record", Category =1 };
+            int n = App.LandmarkDB.SaveLandmark(landmark).Result;
+
+            return n;
+        }
+
+        public async void WriteFile(string fname)
+        {
+            //TODO написать метод создания файла во внешнем хронилище
         }
         public async Task<LocationResult> GetLocationAsync()
         {
@@ -51,7 +61,7 @@ namespace PicListExp
                 // Handle not supported on device exception
                 result.isError = true;
                 result.Location = null;
-                result.Message = "Device is not supported";
+                result.Message = fnsEx.Message;
 
             }
             catch (FeatureNotEnabledException fneEx)
