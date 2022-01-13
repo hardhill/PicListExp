@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local ="clr-namespace:PicListExp.Controls"
              x:Class="PicListExp.NewPlace"
-             NavigationPage.HasNavigationBar="True" Title="Page 2">
+             NavigationPage.HasNavigationBar="True" Title="New landmark">
     <ContentPage.Content>
         <Grid BackgroundColor="#E3F0E8" Margin="0" Padding="0">
             <Grid.RowDefinitions>
@@ -23,7 +24,9 @@
                 </StackLayout>
                 <Entry x:Name="edtTitle" FontSize="Large" MaxLength="50"  Placeholder="Title" ClearButtonVisibility="WhileEditing" Margin="20,0,20,0" ReturnType="Next" Keyboard="Text"/>
                 <Editor x:Name="edtDescription" FontSize="Large"  MaxLength="100" Placeholder="Description"  Margin="20,0,20,0" Keyboard="Text"/>
-                
+                <StackLayout Orientation="Horizontal">
+                    <local:SelectCat Text="Place"/>
+                </StackLayout>
             </StackLayout>
             <StackLayout Grid.Row="2" Orientation="Horizontal" Margin="20,0,20,0">
                 <Label x:Name="lblLocation" Text="No sattelite" TextColor="Red"/>

@@ -1,6 +1,7 @@
 ﻿using PicListExp.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -35,6 +36,17 @@ namespace PicListExp
         public async void WriteFile(string fname)
         {
             //TODO написать метод создания файла во внешнем хронилище
+            try
+            {
+                string path = $"/storage/emulated/0/{fname}";
+                var sw = File.CreateText(path);
+                sw.WriteLine("Hello storage");
+                sw.Close();
+            }catch (Exception ex)
+            {
+
+            }
+            
         }
         public async Task<LocationResult> GetLocationAsync()
         {

@@ -26,6 +26,7 @@ namespace PicListExp
            placeController = new PlaceControll();
             placeLocation = new LocationResult();
             placeController.OnLocation += PlaceController_OnLocation;
+           
         }
 
         private void PlaceController_OnLocation(LocationResult result)
@@ -64,8 +65,9 @@ namespace PicListExp
 
         private async void btnSaveData_Clicked(object sender, EventArgs e)
         {
-            placeController.SaveData();
-            await Navigation.PopToRootAsync();
+            var n =placeController.SaveData();
+            if(n!=0)
+                await Navigation.PopToRootAsync();
         }
 
         private async void btnGPS_Clicked(object sender, EventArgs e)
