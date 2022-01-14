@@ -23,6 +23,7 @@ namespace PicListExp
 
         public delegate void LocationHandler(LocationResult result);
         public event LocationHandler OnLocation;
+        
 
         public int SaveData()
         {
@@ -33,21 +34,6 @@ namespace PicListExp
             return n;
         }
 
-        public async void WriteFile(string fname)
-        {
-            //TODO написать метод создания файла во внешнем хронилище
-            try
-            {
-                string path = $"/storage/emulated/0/{fname}";
-                var sw = File.CreateText(path);
-                sw.WriteLine("Hello storage");
-                sw.Close();
-            }catch (Exception ex)
-            {
-
-            }
-            
-        }
         public async Task<LocationResult> GetLocationAsync()
         {
             GeolocationRequest request = new GeolocationRequest();
@@ -100,7 +86,7 @@ namespace PicListExp
             return result;
         }
 
-        public async Task<ImageSource> SetImage(bool isFoto)
+        public async Task<Stream> SetImage(bool isFoto)
         {
             FileResult capture;
             if (isFoto)
@@ -117,7 +103,8 @@ namespace PicListExp
                 return null;
             }
             var stream = await capture.OpenReadAsync();
-            return ImageSource.FromStream(() => stream);
+            
+            return stream;
         }
 
         public void Destroy()

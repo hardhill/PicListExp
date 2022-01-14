@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace PicListExp
     public partial class NewPlace : ContentPage
     {
         PlaceControll placeController;
-        LocationResult placeLocation;
+        
         public NewPlace()
         {
            InitializeComponent();
@@ -24,8 +25,7 @@ namespace PicListExp
         {
            base.OnAppearing();
            placeController = new PlaceControll();
-            placeLocation = new LocationResult();
-            placeController.OnLocation += PlaceController_OnLocation;
+           placeController.OnLocation += PlaceController_OnLocation;
            
         }
 
@@ -33,11 +33,13 @@ namespace PicListExp
         {
             if (!result.isError)
             {
-                btnSaveData.IsEnabled = true;
+                lblLocation.TextColor = Color.Blue;
+                lblLocation.Text = $"lat:{result.Location.Latitude}\nlon:{result.Location.Longitude}";
             }
             else
             {
-                btnSaveData.IsEnabled = false;
+                lblLocation.TextColor = Color.Red;
+                lblLocation.Text = "no location";
             }
         }
 
@@ -54,13 +56,16 @@ namespace PicListExp
 
         private async void btnFotoCreate_Clicked(object sender, EventArgs e)
         {
-           imgPhoto.Source = await placeController.SetImage(true);
-            
+           var stream  = await placeController.SetImage(true);
+           imgPhoto.Source = ImageSource.FromStream(() => stream);
+            //TODO save image to file
+
         }
 
         private async void btnPickImage_Clicked(object sender, EventArgs e)
         {
-            imgPhoto.Source = await placeController.SetImage(false);
+            var stream = await placeController.SetImage(false);
+            imgPhoto.Source = ImageSource.FromStream(() => stream);
         }
 
         private async void btnSaveData_Clicked(object sender, EventArgs e)
@@ -72,11 +77,18 @@ namespace PicListExp
 
         private async void btnGPS_Clicked(object sender, EventArgs e)
         {
-            placeLocation = await placeController.GetLocationAsync();
-            if (!placeLocation.isError)
+            await placeController.GetLocationAsync();
+           
+        }
+
+        private void WriteToFile(Stream stream, string destinationFile, int bufferSize = 4096, FileMode mode = FileMode.OpenOrCreate, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.ReadWrite)
+        {
+            using (var destinationFileStream = new FileStream(destinationFile, mode, access, share))
             {
-                lblLocation.TextColor = Color.Blue;
-                lblLocation.Text = $"lat:{placeLocation.Location.Latitude} lon:{placeLocation.Location.Longitude}";
+                while (stream.Position < stream.Length)
+                {
+                    destinationFileStream.WriteByte((byte)stream.ReadByte());
+                }
             }
         }
     }

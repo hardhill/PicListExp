@@ -22,8 +22,8 @@
                     <Button x:Name="btnFotoCreate" HorizontalOptions="FillAndExpand" Text="Foto" Clicked="btnFotoCreate_Clicked"/>
                     <Button x:Name="btnPickImage" HorizontalOptions="FillAndExpand" Text="Picture" Clicked="btnPickImage_Clicked"/>
                 </StackLayout>
-                <Entry x:Name="edtTitle" FontSize="Large" MaxLength="50"  Placeholder="Title" ClearButtonVisibility="WhileEditing" Margin="20,0,20,0" ReturnType="Next" Keyboard="Text"/>
-                <local:Selector />
+                <Entry x:Name="edtTitle" FontSize="Large" MaxLength="50"  Placeholder="Title" ClearButtonVisibility="WhileEditing" Margin="20,0,20,20" ReturnType="Next" Keyboard="Text"/>
+                <local:Selector  />
             </StackLayout>
             <StackLayout Grid.Row="2" Orientation="Horizontal" Margin="20,0,20,0">
                 <Label x:Name="lblLocation" Text="No sattelite" TextColor="Red"/>
