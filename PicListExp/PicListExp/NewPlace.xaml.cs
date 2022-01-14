@@ -59,7 +59,8 @@ namespace PicListExp
            var stream  = await placeController.SetImage(true);
            imgPhoto.Source = ImageSource.FromStream(() => stream);
             //TODO save image to file
-
+            var filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "photo.jpg");
+            WriteToFile(stream, filename);
         }
 
         private async void btnPickImage_Clicked(object sender, EventArgs e)
@@ -81,7 +82,7 @@ namespace PicListExp
            
         }
 
-        private void WriteToFile(Stream stream, string destinationFile, int bufferSize = 4096, FileMode mode = FileMode.OpenOrCreate, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.ReadWrite)
+        private void WriteToFile(Stream stream, string destinationFile, int bufferSize = 4096, FileMode mode = FileMode.OpenOrCreate, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None)
         {
             using (var destinationFileStream = new FileStream(destinationFile, mode, access, share))
             {
