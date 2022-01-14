@@ -1,18 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local ="clr-namespace:ComponentExp.Controls"
              x:Class="PicListExp.NewPlace"
-             NavigationPage.HasNavigationBar="True" Title="Page 2">
+             NavigationPage.HasNavigationBar="True" Title="New landmark">
     <ContentPage.Content>
-        <StackLayout>
-            <Image Source="nofoto.png"  WidthRequest="400">
+        <Grid BackgroundColor="#E3F0E8" Margin="0" Padding="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.6*" />
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Image Source="nofoto.png" x:Name="imgPhoto" BackgroundColor="#8FA7C1">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_Tapped"/>
                 </Image.GestureRecognizers>
             </Image>
-            <Entry x:Name="edtTitle" FontSize="Large" HorizontalOptions="Fill" MaxLength="100" Placeholder="Title" ClearButtonVisibility="WhileEditing" Margin="0,20,10,20"/>
-            <Entry x:Name="edtDescription" FontSize="Large" HorizontalOptions="Fill" MaxLength="250" Placeholder="Description" ClearButtonVisibility="WhileEditing" Margin="0,20,10,20"/>
-            <Button x:Name="btnSaveData" VerticalOptions="EndAndExpand" Text="Save this Landmark" FontSize="Large" BackgroundColor="#ABEABE" Padding="20"/>
-        </StackLayout>
+            <StackLayout Grid.Row="1" Spacing="0">
+                <StackLayout Orientation="Horizontal" Spacing="0">
+                    <Button x:Name="btnFotoCreate" HorizontalOptions="FillAndExpand" Text="Foto" Clicked="btnFotoCreate_Clicked"/>
+                    <Button x:Name="btnPickImage" HorizontalOptions="FillAndExpand" Text="Picture" Clicked="btnPickImage_Clicked"/>
+                </StackLayout>
+                <Entry x:Name="edtTitle" FontSize="Large" MaxLength="50"  Placeholder="Title" ClearButtonVisibility="WhileEditing" Margin="20,0,20,0" ReturnType="Next" Keyboard="Text"/>
+                <local:Selector />
+            </StackLayout>
+            <StackLayout Grid.Row="2" Orientation="Horizontal" Margin="20,0,20,0">
+                <Label x:Name="lblLocation" Text="No sattelite" TextColor="Red"/>
+                <Button x:Name="btnGPS" Text="GPS" HorizontalOptions="EndAndExpand" Clicked="btnGPS_Clicked"/>
+            </StackLayout>
+            <Button Grid.Row="3" x:Name="btnSaveData"  
+                    Text="Save this Landmark" 
+                    FontSize="Large" 
+                    BackgroundColor="#ABEABE" 
+                    Padding="10" 
+                    IsEnabled="False"
+                    Clicked="btnSaveData_Clicked"/>
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>
