@@ -20,7 +20,7 @@ namespace PicListExp
         protected override async void OnAppearing()
         {
             PlaceList = new List<Place>();
-            PlaceList.Add(new Place() { Name = "Королев", Description = "Город где живет Сережа", Image = "https://projects.bielecki.ru/images/points/korolev.jpg" });
+            PlaceList.Add(new Place() { Name = "Королев", Description = "Город где живет Сережа", Image = "noimage.jpg" });
             PlaceList.Add(new Place() { Name = "Кострома", Description = "Наверно очень древний город", Image = "https://projects.bielecki.ru/images/points/kostroma.jpg" });
             PlaceList.Add(new Place() { Name = "Владимир", Description = "Русский город", Image = "https://projects.bielecki.ru/images/points/vladimir.jpg" });
             PlaceList.Add(new Place() { Name = "Пермь", Description = "Казарбин там работает", Image = "https://projects.bielecki.ru/images/points/perm.jpg" });
@@ -30,7 +30,7 @@ namespace PicListExp
             PlaceList.Add(new Place() { Name = "Новосибирск", Description = "Метро тоже есть", Image = "https://projects.bielecki.ru/images/points/novosibirsk.jpg" });
             PlaceList.Add(new Place() { Name = "Красноярск", Description = "Нечем дышать", Image = "https://projects.bielecki.ru/images/points/krasnoyarsk.jpg" });
             PlaceList.Add(new Place() { Name = "Иркутск", Description = "Соседний город", Image = "https://projects.bielecki.ru/images/points/irkutsk.jpg" });
-            PlaceList.Add(new Place() { Name = "Улан-Удэ", Description = "Родина моя", Image = "https://projects.bielecki.ru/images/points/ulan-ude.jpg" });
+            PlaceList.Add(new Place() { Name = "Улан-Удэ", Description = "Родина моя", Image = "noimage.jpg" });
             BindingContext = this;
             var list = await App.LandmarkDB.GetLandmarksAsync();
             base.OnAppearing();
